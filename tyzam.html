@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tyzam — Kids Coding Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #050a12;
+    --bg2: #0b1220;
+    --bg3: #101828;
+    --accent: #00f0c8;
+    --accent2: #7b61ff;
+    --accent3: #ff6b6b;
+    --text: #f0f4ff;
+    --muted: #7a8ba0;
+    --card-border: rgba(0,240,200,0.15);
+    --mono: 'Space Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* Grid bg */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,240,200,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,240,200,0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(5,10,18,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,240,200,0.08);
+  }
+
+  .logo {
+    font-family: var(--mono);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-decoration: none;
+  }
+
+  .logo span { color: var(--accent2); }
+
+  nav ul {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  nav ul a {
+    font-size: 0.9rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+    font-family: var(--mono);
+  }
+
+  nav ul a:hover { color: var(--accent); }
+
+  .nav-cta {
+    background: var(--accent);
+    color: #050a12 !important;
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
+    font-weight: 700 !important;
+    transition: opacity 0.2s !important;
+  }
+
+  .nav-cta:hover { opacity: 0.85; color: #050a12 !important; }
+
+  /* SECTIONS */
+  section { position: relative; z-index: 1; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8rem 2rem 4rem;
+  }
+
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    border: 1px solid rgba(0,240,200,0.3);
+    padding: 0.35rem 1rem;
+    border-radius: 2px;
+    margin-bottom: 2rem;
+    display: inline-block;
+  }
+
+  h1 {
+    font-family: var(--mono);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 1.5rem;
+  }
+
+  h1 .hl { color: var(--accent); }
+  h1 .hl2 { color: var(--accent2); }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--muted);
+    max-width: 520px;
+    margin: 0 auto 2.5rem;
+  }
+
+  .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #050a12;
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 0.8rem 2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: transform 0.15s, box-shadow 0.15s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,240,200,0.25);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--accent2);
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 0.8rem 2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    letter-spacing: 1px;
+    border: 1px solid var(--accent2);
+    transition: background 0.2s;
+    cursor: pointer;
+  }
+
+  .btn-outline:hover { background: rgba(123,97,255,0.1); }
+
+  /* stats row */
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    margin-top: 4rem;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: var(--mono);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .stat-label {
+    font-size: 0.82rem;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 0.2rem;
+  }
+
+  /* SECTIONS COMMON */
+  .section-pad { padding: 6rem 2rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  h2 {
+    font-family: var(--mono);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    color: var(--muted);
+    font-size: 1.05rem;
+    max-width: 520px;
+    margin-bottom: 3rem;
+  }
+
+  /* SERVICES */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    background: var(--bg2);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 2rem;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: default;
+  }
+
+  .service-card:hover {
+    border-color: rgba(0,240,200,0.5);
+    transform: translateY(-4px);
+  }
+
+  .service-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-card h3 {
+    font-family: var(--mono);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+    letter-spacing: 1px;
+  }
+
+  .service-card p { color: var(--muted); font-size: 0.95rem; }
+
+  .service-tag {
+    display: inline-block;
+    margin-top: 1rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.25rem 0.7rem;
+    border-radius: 2px;
+    letter-spacing: 1px;
+  }
+
+  .tag-online { background: rgba(0,240,200,0.1); color: var(--accent); }
+  .tag-school { background: rgba(123,97,255,0.1); color: var(--accent2); }
+  .tag-home { background: rgba(255,107,107,0.1); color: var(--accent3); }
+
+  /* COURSES */
+  .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .course-card {
+    background: var(--bg2);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 6px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .course-card:hover {
+    border-color: var(--card-border);
+    transform: translateY(-3px);
+  }
+
+  .course-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .c1::before { background: var(--accent); }
+  .c2::before { background: var(--accent2); }
+  .c3::before { background: var(--accent3); }
+  .c4::before { background: #f7c948; }
+  .c5::before { background: #38bdf8; }
+  .c6::before { background: #a78bfa; }
+  .c7::before { background: #fb923c; }
+  .c8::before { background: #34d399; }
+
+  .course-emoji { font-size: 1.8rem; margin-bottom: 0.75rem; }
+
+  .course-card h3 {
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    color: var(--text);
+  }
+
+  .course-card p { font-size: 0.82rem; color: var(--muted); }
+
+  .course-level {
+    margin-top: 0.75rem;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  /* HOW IT WORKS */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    position: relative;
+  }
+
+  .step {
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  .step-num {
+    font-family: var(--mono);
+    font-size: 3rem;
+    font-weight: 700;
+    color: rgba(0,240,200,0.15);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .step h3 {
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+  }
+
+  .step p { font-size: 0.9rem; color: var(--muted); }
+
+  /* WHO WE TEACH */
+  .audience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .audience-card {
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 2.5rem 2rem;
+    background: var(--bg2);
+    text-align: center;
+  }
+
+  .audience-card .big-icon { font-size: 3rem; margin-bottom: 1rem; }
+
+  .audience-card h3 {
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .audience-card p { color: var(--muted); font-size: 0.92rem; }
+
+  /* BOOKING */
+  #book {
+    background: var(--bg2);
+    border-top: 1px solid rgba(0,240,200,0.08);
+    border-bottom: 1px solid rgba(0,240,200,0.08);
+  }
+
+  .book-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  @media (max-width: 700px) {
+    .book-inner { grid-template-columns: 1fr; gap: 2rem; }
+    nav { padding: 1rem 1.5rem; }
+    nav ul { gap: 1rem; }
+  }
+
+  .form-group { margin-bottom: 1.2rem; }
+
+  label {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    padding: 0.7rem 1rem;
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--accent);
+  }
+
+  select option { background: var(--bg3); }
+
+  textarea { resize: vertical; min-height: 100px; }
+
+  .form-submit {
+    width: 100%;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    padding: 0.9rem;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  .footer-logo {
+    font-family: var(--mono);
+    font-size: 1.1rem;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Glow blob in hero */
+  .blob {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.12;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .blob1 { background: var(--accent); top: -100px; left: -100px; }
+  .blob2 { background: var(--accent2); bottom: -100px; right: -100px; }
+
+  /* Animate in */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero > * {
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .hero > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero > *:nth-child(2) { animation-delay: 0.2s; }
+  .hero > *:nth-child(3) { animation-delay: 0.3s; }
+  .hero > *:nth-child(4) { animation-delay: 0.4s; }
+  .hero > *:nth-child(5) { animation-delay: 0.5s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">TY<span>ZAM</span></a>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#book" class="nav-cta">Book a class</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="hero-tag">&#47;&#47; Coding for the next generation</div>
+  <h1>Turn curiosity<br/>into <span class="hl">code.</span><br/><span class="hl2">_</span></h1>
+  <p class="hero-sub">Tyzam teaches kids the skills of tomorrow — from Scratch to Python, cybersecurity to AI — through 1-on-1 sessions, school programs, and home visits.</p>
+  <div class="btn-group">
+    <a href="#book" class="btn-primary">Book a class →</a>
+    <a href="#courses" class="btn-outline">View courses</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">8+</div>
+      <div class="stat-label">Courses</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Learning formats</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">1:1</div>
+      <div class="stat-label">Personalised tuition</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section-pad" id="services">
+  <div class="container">
+    <div class="section-label">&gt; services</div>
+    <h2>How we teach</h2>
+    <p class="section-sub">We come to you — wherever your child learns best.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">💻</div>
+        <h3>Online Sessions</h3>
+        <p>Live 1-on-1 coding lessons delivered online. Flexible scheduling, interactive tools, and personalised projects — from anywhere in the world.</p>
+        <span class="service-tag tag-online">Online · Flexible</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏫</div>
+        <h3>School Programs</h3>
+        <p>We partner with schools to deliver structured coding curricula in the classroom. Suitable for all year groups — no prior experience needed.</p>
+        <span class="service-tag tag-school">Schools · Groups</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏠</div>
+        <h3>Home Visits</h3>
+        <p>Prefer learning at home? We come to you. Your child learns comfortably in their own space with a dedicated Tyzam instructor.</p>
+        <span class="service-tag tag-home">In-person · 1:1</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section class="section-pad" id="courses" style="background: var(--bg2);">
+  <div class="container">
+    <div class="section-label">&gt; courses</div>
+    <h2>What we teach</h2>
+    <p class="section-sub">From beginner blocks to advanced AI — there's a course for every level.</p>
+    <div class="courses-grid">
+      <div class="course-card c1">
+        <div class="course-emoji">🐱</div>
+        <h3>Scratch</h3>
+        <p>The perfect starting point. Build games and animations using drag-and-drop blocks.</p>
+        <div class="course-level">// beginner</div>
+      </div>
+      <div class="course-card c2">
+        <div class="course-emoji">🐍</div>
+        <h3>Python</h3>
+        <p>Learn the world's most popular language. From basic programs to mini-projects.</p>
+        <div class="course-level">// beginner → advanced</div>
+      </div>
+      <div class="course-card c3">
+        <div class="course-emoji">☕</div>
+        <h3>Java</h3>
+        <p>Build powerful applications with one of the most in-demand programming languages.</p>
+        <div class="course-level">// intermediate</div>
+      </div>
+      <div class="course-card c4">
+        <div class="course-emoji">🌐</div>
+        <h3>Web Development</h3>
+        <p>Design and build real websites using HTML, CSS, and JavaScript.</p>
+        <div class="course-level">// beginner → intermediate</div>
+      </div>
+      <div class="course-card c5">
+        <div class="course-emoji">🤖</div>
+        <h3>AI & Machine Learning</h3>
+        <p>Understand how AI works and build your own intelligent projects.</p>
+        <div class="course-level">// intermediate → advanced</div>
+      </div>
+      <div class="course-card c6">
+        <div class="course-emoji">🔐</div>
+        <h3>Cybersecurity</h3>
+        <p>Learn how to stay safe online, understand hacking, and protect systems.</p>
+        <div class="course-level">// intermediate</div>
+      </div>
+      <div class="course-card c7">
+        <div class="course-emoji">📱</div>
+        <h3>App Development</h3>
+        <p>Turn your ideas into real mobile apps. Build for iOS and Android.</p>
+        <div class="course-level">// intermediate</div>
+      </div>
+      <div class="course-card c8">
+        <div class="course-emoji">🎮</div>
+        <h3>Game Development</h3>
+        <p>Design and code your own video games — from concept to playable prototype.</p>
+        <div class="course-level">// beginner → advanced</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section-pad" id="how">
+  <div class="container">
+    <div class="section-label">&gt; process</div>
+    <h2>How it works</h2>
+    <p class="section-sub">Getting started is simple. We handle everything.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Book a class</h3>
+        <p>Fill in the form below. Tell us your child's age, interests, and preferred format.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>We match you</h3>
+        <p>We pair your child with the right course and confirm your session details.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Start learning</h3>
+        <p>Your first lesson begins. Personalised, fun, and built around your child's pace.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h3>Keep growing</h3>
+        <p>Track progress, level up courses, and watch your child's confidence soar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE TEACH -->
+<section class="section-pad" style="background: var(--bg2);">
+  <div class="container">
+    <div class="section-label">&gt; who we teach</div>
+    <h2>Built for every learner</h2>
+    <p class="section-sub">Whether it's a curious kid or an entire school — Tyzam has you covered.</p>
+    <div class="audience-grid">
+      <div class="audience-card">
+        <div class="big-icon">🧒</div>
+        <h3>Kids (Under 13)</h3>
+        <p>We make coding fun and approachable for young minds. Scratch, games, and creative projects that spark a love for technology early.</p>
+      </div>
+      <div class="audience-card">
+        <div class="big-icon">🏫</div>
+        <h3>Schools</h3>
+        <p>We bring structured, curriculum-aligned coding programs directly to your school. Suitable for all year groups and learning levels.</p>
+      </div>
+      <div class="audience-card">
+        <div class="big-icon">👨‍👩‍👧</div>
+        <h3>Parents</h3>
+        <p>Give your child a head start. Our home visit and online options make it easy to fit learning into any schedule — no tech knowledge needed from you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING FORM -->
+<section class="section-pad" id="book">
+  <div class="container">
+    <div class="book-inner">
+      <div>
+        <div class="section-label">&gt; get started</div>
+        <h2>Book a class</h2>
+        <p style="color: var(--muted); margin-bottom: 2rem;">Ready to start your child's coding journey? Fill in the form and we'll be in touch within 24 hours to confirm your session.</p>
+        <div style="border-left: 2px solid var(--accent); padding-left: 1.2rem; margin-bottom: 1.5rem;">
+          <p style="font-family: var(--mono); font-size: 0.85rem; color: var(--accent);">// What happens next</p>
+          <p style="color: var(--muted); font-size: 0.9rem; margin-top: 0.5rem;">We review your enquiry → match you to the right course → confirm session details via email or call.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <div style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; color: var(--muted);">
+            <span style="color: var(--accent); font-family: var(--mono);">✓</span> Personalised 1-on-1 sessions
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; color: var(--muted);">
+            <span style="color: var(--accent); font-family: var(--mono);">✓</span> Online, home visit, or school
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; color: var(--muted);">
+            <span style="color: var(--accent); font-family: var(--mono);">✓</span> Courses for all skill levels
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; color: var(--muted);">
+            <span style="color: var(--accent); font-family: var(--mono);">✓</span> Reply within 24 hours
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="form-group">
+          <label>Parent / Guardian name</label>
+          <input type="text" placeholder="e.g. Jane Smith" />
+        </div>
+        <div class="form-group">
+          <label>Email address</label>
+          <input type="email" placeholder="jane@example.com" />
+        </div>
+        <div class="form-group">
+          <label>Child's age</label>
+          <input type="number" placeholder="e.g. 9" min="3" max="17" />
+        </div>
+        <div class="form-group">
+          <label>Course interested in</label>
+          <select>
+            <option value="">Select a course...</option>
+            <option>Scratch (Beginner)</option>
+            <option>Python</option>
+            <option>Java</option>
+            <option>Web Development</option>
+            <option>AI & Machine Learning</option>
+            <option>Cybersecurity</option>
+            <option>App Development</option>
+            <option>Game Development</option>
+            <option>Not sure — help me choose</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Preferred format</label>
+          <select>
+            <option value="">Select a format...</option>
+            <option>Online (1-on-1)</option>
+            <option>Home visit</option>
+            <option>School program</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Anything else? (optional)</label>
+          <textarea placeholder="e.g. preferred days, any experience your child has, specific goals..."></textarea>
+        </div>
+        <button class="btn-primary form-submit" onclick="this.textContent='✓ Request sent!'; this.style.background='#34d399'; this.style.color='#050a12';">Send booking request →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">TYZAM</div>
+  <p>Empowering the next generation of coders.</p>
+  <p style="margin-top: 1.5rem; font-size: 0.8rem; opacity: 0.5;">© 2025 Tyzam. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
