@@ -897,13 +897,13 @@ footer p { font-size: 0.88rem; }
         <div class="check-item"><div class="check-dot">✓</div>Reply within 24 hours</div>
       </div>
     </div>
-    <div class="book-form">
-      <div class="form-group"><label>Parent / Guardian name</label><input type="text" placeholder="e.g. Jane Smith" /></div>
-      <div class="form-group"><label>Email address</label><input type="email" placeholder="jane@example.com" /></div>
-      <div class="form-group"><label>Child's age</label><input type="number" placeholder="e.g. 9" min="3" max="17" /></div>
+    <form class="book-form" action="https://formspree.io/f/mrevqkzk" method="POST">
+      <div class="form-group"><label>Parent / Guardian name</label><input type="text" name="name" placeholder="e.g. Jane Smith" required /></div>
+      <div class="form-group"><label>Email address</label><input type="email" name="email" placeholder="jane@example.com" required /></div>
+      <div class="form-group"><label>Child's age</label><input type="number" name="age" placeholder="e.g. 9" min="3" max="17" /></div>
       <div class="form-group">
         <label>Course interested in</label>
-        <select>
+        <select name="course" required>
           <option value="">Select a course...</option>
           <option>Scratch (Beginner)</option>
           <option>Python</option>
@@ -918,16 +918,16 @@ footer p { font-size: 0.88rem; }
       </div>
       <div class="form-group">
         <label>Preferred format</label>
-        <select>
+        <select name="format" required>
           <option value="">Select a format...</option>
           <option>Online (1-on-1)</option>
           <option>Home visit</option>
           <option>School program</option>
         </select>
       </div>
-      <div class="form-group"><label>Anything else? (optional)</label><textarea placeholder="e.g. preferred days, experience your child has, specific goals..."></textarea></div>
-      <button class="submit-btn" onclick="this.textContent='✓ Request sent!'; this.style.background='#16a34a';">Send booking request →</button>
-    </div>
+      <div class="form-group"><label>Anything else? (optional)</label><textarea name="message" placeholder="e.g. preferred days, experience your child has, specific goals..."></textarea></div>
+      <button type="submit" class="submit-btn">Send booking request →</button>
+    </form>
   </div>
 </div>
 
