@@ -118,55 +118,65 @@
     .book-card { background: linear-gradient(135deg, var(--wine-dark), var(--wine)); color: var(--white); border-radius: 16px; padding: clamp(36px, 6vw, 64px); }
     .book-card h2 { font-family: 'Syne', sans-serif; font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; margin-bottom: 10px; }
     .book-card > p { color: rgba(255,255,255,0.78); max-width: 500px; margin-bottom: 32px; }
-
-    /* Updated booking form — grid layout */
     .book-form { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .book-form .form-group { display: flex; flex-direction: column; gap: 6px; }
     .book-form .form-group.full-width { grid-column: 1 / -1; }
     .book-form label { font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.75); letter-spacing: 0.05em; text-transform: uppercase; }
-    .book-form input,
-    .book-form select,
-    .book-form textarea {
-      padding: 12px 16px;
-      border-radius: 8px;
-      border: none;
-      font-size: 0.95rem;
-      font-family: 'Inter', sans-serif;
-      width: 100%;
-      outline: none;
-      background: rgba(255,255,255,0.97);
-      color: var(--text);
-    }
-    .book-form select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B1A2A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; cursor: pointer; }
-    .book-form input:focus,
-    .book-form select:focus,
-    .book-form textarea:focus { box-shadow: 0 0 0 3px rgba(232,201,106,0.6); }
+    .book-form input, .book-form select, .book-form textarea { padding: 12px 16px; border-radius: 8px; border: none; font-size: 0.95rem; font-family: 'Inter', sans-serif; width: 100%; outline: none; background: rgba(255,255,255,0.97); color: var(--text); }
+    .book-form select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B1A2A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; background-color: rgba(255,255,255,0.97); padding-right: 36px; cursor: pointer; }
+    .book-form input:focus, .book-form select:focus, .book-form textarea:focus { box-shadow: 0 0 0 3px rgba(232,201,106,0.6); }
     .book-form textarea { resize: vertical; min-height: 90px; }
     .book-form .form-submit { grid-column: 1 / -1; margin-top: 4px; }
-    .book-form button {
-      background: var(--gold);
-      color: var(--wine-dark);
-      font-weight: 700;
-      font-size: 1rem;
-      padding: 14px 32px;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.15s;
-      white-space: nowrap;
-      width: 100%;
-    }
+    .book-form button { background: var(--gold); color: var(--wine-dark); font-weight: 700; font-size: 1rem; padding: 14px 32px; border-radius: 8px; border: none; cursor: pointer; transition: background 0.2s, transform 0.15s; width: 100%; }
     .book-form button:hover { background: var(--gold-soft); transform: translateY(-1px); }
-
-    /* Success message */
     .book-success { display: none; background: rgba(232,201,106,0.15); border: 1px solid rgba(232,201,106,0.5); border-radius: 10px; padding: 18px 22px; margin-top: 20px; color: var(--gold-soft); font-size: 0.95rem; }
     .book-success strong { color: var(--gold); }
+
+    /* CONTACT */
+    #contact { background: var(--white); }
+    #contact .section-title { color: var(--wine-dark); }
+    .contact-inner { display: grid; grid-template-columns: 1fr 1.4fr; gap: 56px; align-items: start; }
+    .contact-info { display: flex; flex-direction: column; gap: 24px; }
+    .info-block { background: var(--cream); border-radius: var(--radius); padding: 24px; border-left: 4px solid var(--wine); }
+    .info-block .info-icon { font-size: 1.5rem; margin-bottom: 8px; }
+    .info-block h3 { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--wine-dark); margin-bottom: 6px; }
+    .info-block p, .info-block a { font-size: 0.93rem; color: var(--muted); text-decoration: none; display: block; line-height: 1.9; }
+    .info-block a:hover { color: var(--wine); }
+    .contact-services { background: var(--wine-dark); border-radius: var(--radius); padding: 24px; }
+    .contact-services h3 { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--gold); margin-bottom: 14px; }
+    .contact-services ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .contact-services ul li { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; color: rgba(255,255,255,0.82); }
+    .contact-services ul li .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+    .contact-courses { background: var(--cream); border-radius: var(--radius); padding: 24px; border-left: 4px solid var(--gold); }
+    .contact-courses h3 { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--wine-dark); margin-bottom: 14px; }
+    .contact-courses ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .contact-courses ul li { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--muted); }
+    .age-tag { display: inline-block; background: rgba(107,26,42,0.1); color: var(--wine); font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 100px; white-space: nowrap; }
+    .contact-form-card { background: var(--cream); border-radius: 16px; padding: clamp(24px, 4vw, 40px); border: 1.5px solid rgba(107,26,42,0.1); }
+    .contact-form-card h2 { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--wine-dark); margin-bottom: 6px; }
+    .contact-form-card > p { color: var(--muted); font-size: 0.92rem; margin-bottom: 24px; }
+    .contact-form { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .contact-form .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .contact-form .form-group.full-width { grid-column: 1 / -1; }
+    .contact-form label { font-size: 0.78rem; font-weight: 600; color: var(--wine); letter-spacing: 0.06em; text-transform: uppercase; }
+    .contact-form input, .contact-form select, .contact-form textarea { padding: 11px 14px; border-radius: 8px; border: 1.5px solid rgba(107,26,42,0.18); font-size: 0.93rem; font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); outline: none; transition: border-color 0.2s, box-shadow 0.2s; width: 100%; }
+    .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { border-color: var(--wine); box-shadow: 0 0 0 3px rgba(107,26,42,0.1); }
+    .contact-form select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B1A2A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; background-color: var(--white); padding-right: 36px; cursor: pointer; }
+    .contact-form textarea { resize: vertical; min-height: 110px; }
+    .contact-form .form-submit { grid-column: 1 / -1; margin-top: 4px; }
+    .contact-form button { background: var(--wine-dark); color: var(--white); font-weight: 700; font-size: 1rem; padding: 14px 32px; border-radius: 8px; border: none; cursor: pointer; transition: background 0.2s, transform 0.15s; width: 100%; }
+    .contact-form button:hover { background: var(--wine); transform: translateY(-1px); }
+    .form-success { display: none; background: rgba(107,26,42,0.06); border: 1.5px solid rgba(107,26,42,0.2); border-radius: 10px; padding: 18px 22px; margin-top: 20px; color: var(--wine-dark); font-size: 0.95rem; }
+    .form-success strong { color: var(--wine); }
 
     /* FOOTER */
     footer { background: var(--wine-dark); color: rgba(255,255,255,0.6); text-align: center; padding: 28px 24px; font-size: 0.85rem; }
     footer strong { color: var(--gold); }
 
     /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .contact-inner { grid-template-columns: 1fr; gap: 32px; }
+    }
     @media (max-width: 768px) {
       .hamburger { display: flex; }
       .nav-links { display: none !important; }
@@ -176,6 +186,9 @@
       .book-form { grid-template-columns: 1fr; }
       .book-form .form-group.full-width { grid-column: 1; }
       .book-form .form-submit { grid-column: 1; }
+      .contact-form { grid-template-columns: 1fr; }
+      .contact-form .form-group.full-width { grid-column: 1; }
+      .contact-form .form-submit { grid-column: 1; }
     }
     @media (max-width: 480px) {
       .services-grid { grid-template-columns: 1fr; }
@@ -200,6 +213,7 @@
       <li><a href="#services">Services</a></li>
       <li><a href="#courses">Courses</a></li>
       <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
       <li><a href="#book" class="cta-nav">Book a Class</a></li>
     </ul>
     <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
@@ -211,6 +225,7 @@
     <a href="#services" onclick="closeMenu()">Services</a>
     <a href="#courses" onclick="closeMenu()">Courses</a>
     <a href="#gallery" onclick="closeMenu()">Gallery</a>
+    <a href="#contact" onclick="closeMenu()">Contact</a>
     <a href="#book" class="cta-nav" onclick="closeMenu()">Book a Class</a>
   </div>
 </nav>
@@ -267,7 +282,7 @@
       <div class="service-card">
         <div class="service-icon">🤖</div>
         <h3>AI and Machine Learning</h3>
-        <p>Age-appropriate introduction to artificial intelligence concepts, tools, and morden world applications.</p>
+        <p>Age-appropriate introduction to artificial intelligence concepts, tools, and modern world applications.</p>
       </div>
       <div class="service-card">
         <div class="service-icon">🔐</div>
@@ -401,48 +416,29 @@
     <div class="book-card">
       <h2>Ready to get started?</h2>
       <p>Book your child's first class today. No prior experience needed, just curiosity and a love of learning.</p>
-
       <div class="book-form" id="bookingForm">
-
-        <!-- Parent name -->
         <div class="form-group">
           <label for="parentName">Your Name (Parent / Guardian)</label>
           <input type="text" id="parentName" placeholder="e.g. Sarah Kamau" />
         </div>
-
-        <!-- Email -->
         <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" placeholder="you@example.com" />
+          <label for="bookEmail">Email Address</label>
+          <input type="email" id="bookEmail" placeholder="you@example.com" />
         </div>
-
-        <!-- Child's name -->
         <div class="form-group">
           <label for="childName">Child's Name</label>
           <input type="text" id="childName" placeholder="e.g. Jayden" />
         </div>
-
-        <!-- Child's age -->
         <div class="form-group">
           <label for="childAge">Child's Age</label>
           <select id="childAge">
             <option value="" disabled selected>Select age</option>
-            <option>6 years old</option>
-            <option>7 years old</option>
-            <option>8 years old</option>
-            <option>9 years old</option>
-            <option>10 years old</option>
-            <option>11 years old</option>
-            <option>12 years old</option>
-            <option>13 years old</option>
-            <option>14 years old</option>
-            <option>15 years old</option>
-            <option>16 years old</option>
-            <option>17 years old</option>
+            <option>6 years old</option><option>7 years old</option><option>8 years old</option>
+            <option>9 years old</option><option>10 years old</option><option>11 years old</option>
+            <option>12 years old</option><option>13 years old</option><option>14 years old</option>
+            <option>15 years old</option><option>16 years old</option><option>17 years old</option>
           </select>
         </div>
-
-        <!-- Course -->
         <div class="form-group">
           <label for="course">Course of Interest</label>
           <select id="course">
@@ -456,8 +452,6 @@
             <option>Not sure yet — help me choose</option>
           </select>
         </div>
-
-        <!-- Service type -->
         <div class="form-group">
           <label for="serviceType">Type of Service</label>
           <select id="serviceType">
@@ -467,35 +461,117 @@
             <option>In-Person (at our academy)</option>
           </select>
         </div>
-
-        <!-- Preferred date -->
         <div class="form-group">
           <label for="prefDate">Preferred Start Date</label>
           <input type="date" id="prefDate" />
         </div>
-
-        <!-- Phone -->
         <div class="form-group">
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" placeholder="e.g. 0712 345 678" />
+          <label for="bookPhone">Phone Number</label>
+          <input type="tel" id="bookPhone" placeholder="e.g. 0712 345 678" />
         </div>
-
-        <!-- Message -->
         <div class="form-group full-width">
           <label for="message">Anything else we should know? (optional)</label>
           <textarea id="message" placeholder="e.g. My child has some experience with Scratch already..."></textarea>
         </div>
-
-        <!-- Submit -->
         <div class="form-submit">
           <button type="button" onclick="submitBooking()">Book a Class →</button>
         </div>
-
       </div>
-
-      <!-- Success message -->
       <div class="book-success" id="bookSuccess">
         <strong>🎉 Booking received!</strong> Thanks for reaching out. We'll be in touch within 24 hours to confirm your child's first class.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <p class="section-label">Get in Touch</p>
+    <h2 class="section-title">Contact Us</h2>
+    <div class="divider"></div>
+    <p class="section-sub">Have a question? We're always happy to help.</p>
+    <div class="contact-inner">
+
+      <!-- Left: info + services + courses -->
+      <div class="contact-info">
+        <div class="info-block">
+          <div class="info-icon">📞</div>
+          <h3>Call or WhatsApp Us</h3>
+          <a href="tel:+254702051671">0702 051 671</a>
+          <a href="tel:+254722386476">0722 386 476</a>
+        </div>
+        <div class="info-block">
+          <div class="info-icon">✉️</div>
+          <h3>Email Us</h3>
+          <a href="mailto:tyzaminnovation@gmail.com">tyzaminnovation@gmail.com</a>
+          <p style="margin-top:6px; font-size:0.85rem;">We reply within 24 hours on weekdays.</p>
+        </div>
+        <div class="contact-services">
+          <h3>Our Services</h3>
+          <ul>
+            <li><span class="dot"></span>Coding Classes</li>
+            <li><span class="dot"></span>AI &amp; Machine Learning</li>
+            <li><span class="dot"></span>Cybersecurity</li>
+            <li><span class="dot"></span>Tech Projects</li>
+            <li><span class="dot"></span>Holiday Camps</li>
+            <li><span class="dot"></span>Private Tutoring</li>
+          </ul>
+        </div>
+        <div class="contact-courses">
+          <h3>Our Courses</h3>
+          <ul>
+            <li><span class="age-tag">Ages 6–10</span>&nbsp; Scratch for Beginners</li>
+            <li><span class="age-tag">Ages 10–14</span>&nbsp; Python Fundamentals</li>
+            <li><span class="age-tag">Ages 12–17</span>&nbsp; Cybersecurity Basics</li>
+            <li><span class="age-tag">Ages 10–16</span>&nbsp; AI Explorers</li>
+            <li><span class="age-tag">Ages 13–17</span>&nbsp; Web Development</li>
+            <li><span class="age-tag">Ages 8–14</span>&nbsp; Game Design &amp; Dev</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Right: contact form -->
+      <div class="contact-form-card">
+        <h2>Send us a message</h2>
+        <p>Fill in the form and we'll get back to you as soon as possible.</p>
+        <div class="contact-form" id="contactForm">
+          <div class="form-group">
+            <label for="cName">Your Name</label>
+            <input type="text" id="cName" placeholder="e.g. Sarah Kamau" />
+          </div>
+          <div class="form-group">
+            <label for="cEmail">Email Address</label>
+            <input type="email" id="cEmail" placeholder="you@example.com" />
+          </div>
+          <div class="form-group">
+            <label for="cPhone">Phone Number</label>
+            <input type="tel" id="cPhone" placeholder="e.g. 0712 345 678" />
+          </div>
+          <div class="form-group">
+            <label for="cTopic">Topic</label>
+            <select id="cTopic">
+              <option value="" disabled selected>What's this about?</option>
+              <option>Enrolling my child</option>
+              <option>Course information</option>
+              <option>Service types (Online / Home Visit)</option>
+              <option>Holiday camps</option>
+              <option>Pricing &amp; packages</option>
+              <option>Partnership or collaboration</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div class="form-group full-width">
+            <label for="cMsg">Your Message</label>
+            <textarea id="cMsg" placeholder="Tell us what you'd like to know..."></textarea>
+          </div>
+          <div class="form-submit">
+            <button type="button" onclick="sendMessage()">Send Message →</button>
+          </div>
+        </div>
+        <div class="form-success" id="contactSuccess">
+          <strong>✅ Message sent!</strong> Thanks for reaching out. We'll get back to you within 24 hours.
+        </div>
       </div>
 
     </div>
@@ -527,24 +603,21 @@
 
   function submitBooking() {
     const parentName  = document.getElementById('parentName').value.trim();
-    const email       = document.getElementById('email').value.trim();
+    const email       = document.getElementById('bookEmail').value.trim();
     const childName   = document.getElementById('childName').value.trim();
     const childAge    = document.getElementById('childAge').value;
     const course      = document.getElementById('course').value;
     const serviceType = document.getElementById('serviceType').value;
-
     if (!parentName || !email || !childName || !childAge || !course || !serviceType) {
       alert('Please fill in all required fields before submitting.');
       return;
     }
-
     const data = {
       parentName, email, childName, childAge, course, serviceType,
-      phone:    document.getElementById('phone').value,
+      phone:    document.getElementById('bookPhone').value,
       prefDate: document.getElementById('prefDate').value,
       message:  document.getElementById('message').value
     };
-
     fetch('https://formspree.io/f/maqzjobw', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -554,6 +627,36 @@
       if (res.ok) {
         document.getElementById('bookingForm').style.display = 'none';
         document.getElementById('bookSuccess').style.display = 'block';
+      } else {
+        alert('Something went wrong. Please try again.');
+      }
+    })
+    .catch(() => alert('Network error. Please try again.'));
+  }
+
+  function sendMessage() {
+    const name  = document.getElementById('cName').value.trim();
+    const email = document.getElementById('cEmail').value.trim();
+    const msg   = document.getElementById('cMsg').value.trim();
+    if (!name || !email || !msg) {
+      alert('Please fill in your name, email, and message before sending.');
+      return;
+    }
+    const data = {
+      name, email,
+      phone:   document.getElementById('cPhone').value,
+      topic:   document.getElementById('cTopic').value,
+      message: msg
+    };
+    fetch('https://formspree.io/f/maqzjobw', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(res => {
+      if (res.ok) {
+        document.getElementById('contactForm').style.display = 'none';
+        document.getElementById('contactSuccess').style.display = 'block';
       } else {
         alert('Something went wrong. Please try again.');
       }
