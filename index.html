@@ -538,9 +538,27 @@
       return;
     }
 
-    // Hide form, show success message
-    document.getElementById('bookingForm').style.display = 'none';
-    document.getElementById('bookSuccess').style.display = 'block';
+    const data = {
+      parentName, email, childName, childAge, course, serviceType,
+      phone:    document.getElementById('phone').value,
+      prefDate: document.getElementById('prefDate').value,
+      message:  document.getElementById('message').value
+    };
+
+    fetch('https://formspree.io/f/maqzjobw', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(res => {
+      if (res.ok) {
+        document.getElementById('bookingForm').style.display = 'none';
+        document.getElementById('bookSuccess').style.display = 'block';
+      } else {
+        alert('Something went wrong. Please try again.');
+      }
+    })
+    .catch(() => alert('Network error. Please try again.'));
   }
 </script>
 
